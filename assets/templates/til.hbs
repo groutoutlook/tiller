@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title>TIL: {{meta.title}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{config.base_url}}syntect.css">
+        <link rel="stylesheet" href="{{config.base_url}}style.css">
+        {{#if config.mastodon}}
+        <meta name="fediverse:creator" content="{{ config.mastodon }}">
+        {{/if}}
+    </head>
+    <body>
+        {{> _top-links}}
+
+        <header class="til-header">
+            <h1 class="til-title">{{meta.title}}</h1>
+        </header>
+
+        <div class="til-subheader">
+            <span class="til-date">{{meta.date}}</span>
+            <ul class="topic-list">
+                {{#each meta.tags}}
+                <li class="topic-list-tag">
+                    <a class="til-tag" href="{{@root.config.base_url}}category/{{this}}">
+                        <span>{{this}}</span>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="til-content">
+            {{{content}}}
+        </div>
+
+        <hr>
+    </body>
+</html>
